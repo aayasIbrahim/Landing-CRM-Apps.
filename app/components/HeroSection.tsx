@@ -10,7 +10,6 @@ const HeroSection: React.FC = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("Email submitted:", email);
-
   };
 
   return (

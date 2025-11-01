@@ -105,7 +105,7 @@ const Footer: React.FC = () => {
           <div className="col-span-2 md:col-span-1 pr-6">
             <div className="flex gap-1 mb-4">
               <Image
-                src="/CF Logo white.png" // ✅ Path from the public folder root
+                src="/CF Logo White.png" // ✅ Path from the public folder root
                 alt="logo"
                 width={40}
                 height={40}
@@ -202,8 +202,9 @@ const Footer: React.FC = () => {
         {/* Footer Bottom */}
         <div className="mt-12 pt-8 border-t border-gray-700/50 text-center">
           <p className="text-sm text-gray-400">
-            Copyright &copy; Coursefiction 2025. All Rights Reserved.
-          </p>
+            Copyright &copy; {new Date().getFullYear()} Coursefiction. All
+            Rights Reserved.
+          </p> 
         </div>
       </div>
     </footer>
