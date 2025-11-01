@@ -54,7 +54,7 @@ const TimelineSection: React.FC = () => {
             <p className="text-sm font-semibold uppercase tracking-widest text-indigo-500 mb-3">
               Stockie Operation Across the World
             </p>
-            <h1 className="text-4xl md:text-5xl font-extrabold text-black leading-tight mb-6">
+            <h1 className="text-4xl md:text-5xl font-extrabold text-teal-700 leading-tight mb-6">
               We have best team and best process
             </h1>
             <p className="text-white mb-8 max-w-md">
@@ -66,7 +66,7 @@ const TimelineSection: React.FC = () => {
           </div>
 
           {/* Right Timeline */}
-          <div className="lg:col-span-7 h-[500px] relative">
+          <div className="lg:col-span-7 h-[400px] relative">
             {/* Background Numbers */}
             <div className="absolute top-[350px] left-[15%] text-9xl font-extrabold text-gray-100 opacity-60 z-0 hidden md:block">1</div>
             <div className="absolute top-[300px] left-[55%] text-9xl font-extrabold text-gray-100 opacity-60 z-0 hidden md:block">2</div>
@@ -118,7 +118,7 @@ const TimelineSection: React.FC = () => {
                   {step.number}
                 </div>
                 <h3 className="text-lg font-bold text-teal-300 mb-1">{step.title}</h3>
-                <p className="text-sm text-indigo-300 leading-snug">{step.description}</p>
+                <p className="text-sm text-teal-700 leading-snug">{step.description}</p>
               </div>
             ))}
           </div>

@@ -1,8 +1,8 @@
-"use client"; // if using Next 13 app directory
+"use client"; 
 
 import React, { useState } from "react";
 import Image from "next/image";
-// import dashboardImage from "@/public/dashboard.png"; // replace with your image path
+
 
 const HeroSection: React.FC = () => {
   const [email, setEmail] = useState<string>("");
@@ -10,7 +10,7 @@ const HeroSection: React.FC = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("Email submitted:", email);
-    // TODO: send email to backend or API
+
   };
 
   return (
@@ -28,7 +28,7 @@ const HeroSection: React.FC = () => {
           </p>
 
           {/* === Email Signup Form === */}
-          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md">
+          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mt-5">
             <input
               type="email"
               placeholder="Register using email address"
@@ -46,7 +46,7 @@ const HeroSection: React.FC = () => {
           </form>
 
           {/* === Features List === */}
-          <div className="flex flex-col sm:flex-row gap-4 mt-6">
+          <div className="flex flex-col sm:flex-row gap-4 mt-8">
             <div className="flex items-center gap-2 text-gray-700 font-medium">
               <span className="text-green-500 text-xl">✔️</span> Free Register
             </div>
@@ -57,7 +57,7 @@ const HeroSection: React.FC = () => {
         </div>
 
         {/* === Image === */}
-        <div className="flex-1 relative w-full h-80 md:h-[600px]">
+        <div className="flex-1 relative w-full h-80 md:h-[700px]">
           <Image
             src="/Group 1000000795.png"
             alt="Dashboard with charts and data"

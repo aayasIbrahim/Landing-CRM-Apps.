@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import RegisterDrawer from "./RegisterDrawer";
 import SignUpDrawer from "./SignUpDrawer";
 import SignInDrawer from "./SignInDrawer";
+import Image from "next/image";
 
 const NavBar: React.FC = () => {
   const [isRegisterDrawerOpen, setIsRegisterDrawerOpen] =
@@ -15,7 +16,15 @@ const NavBar: React.FC = () => {
     <header className="bg-white shadow">
       <nav className="container mx-auto flex justify-between items-center px-4 md:px-8 py-4">
         {/* === Logo === */}
-        <div className="text-2xl font-bold text-gray-800">Coursefiction</div>
+        <div className="flex justify-center items-center">
+          <Image
+            src="/CF Logo Black.png" // ✅ Path from the public folder root
+            alt="logo"
+            width={40}
+            height={40}
+          />
+          <div  className=" font-bold text-gray-800">Courseficton</div>
+        </div>
 
         {/* === Desktop Links === */}
         <div className="hidden md:flex items-center gap-8">
