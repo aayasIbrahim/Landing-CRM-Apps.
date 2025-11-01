@@ -1,9 +1,10 @@
+import HeroSection from "./components/HeroSection";
 
 
 export default function Home() {
   return (
-   <div>
-    i am ayas
-   </div>
+   <>
+   <HeroSection/>
+   </>
   );
 }
