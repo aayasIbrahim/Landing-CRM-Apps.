@@ -25,15 +25,15 @@ const features = [
 
 const FeatureSection = () => {
   return (
-    <section className="py-20 px-6 bg-teal-900">
+    <section className="py-20 px-6 bg-black">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <h2 className="text-3xl md:text-4xl font-extrabold text-white text-center mb-12">
+        <h2 className="text-3xl md:text-4xl font-extrabold text-white text-center mt-7 mb-12">
           We help your business grow faster
         </h2>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-1 mb-4">
           {features.map((feature, index) => (
             <FeatureCard
               key={index}

@@ -3,9 +3,9 @@ import Image from "next/image";
 
 const HeroBanner = () => {
   return (
-    <section className="relative w-full h-96 flex items-center justify-center p-6 bg-black">
+    <section className="relative w-full h-96 flex items-center justify-center p-6 bg-black ">
       {/* Background Image Container */}
-      <div className="relative w-full max-w-4xl h-72 rounded-xl overflow-hidden shadow-2xl">
+      <div className="relative w-full max-w-4xl h-72 rounded-xl overflow-hidden shadow-2xl mt-[120px]">
         {/* Background Image */}
         <Image
           src="/istockphoto-1460172015-2048x2048.jpg"
