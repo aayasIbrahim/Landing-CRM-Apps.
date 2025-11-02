@@ -202,7 +202,7 @@ const Footer: React.FC = () => {
         {/* Footer Bottom */}
         <div className="mt-12 pt-8 border-t border-gray-700/50 text-center">
           <p className="text-sm text-gray-400">
-            Devlop By &copy; {new Date().getFullYear()} Coursefiction. All
+            Created By &copy; {new Date().getFullYear()} Coursefiction. All
             Rights Reserved.
           </p> 
         </div>
