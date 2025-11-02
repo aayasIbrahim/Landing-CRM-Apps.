@@ -16,7 +16,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
   link = "#",
 }) => {
   return (
-    <div className="bg-red-950 p-8 rounded-xl shadow-md border border-gray-100 text-center md:text-left flex flex-col items-center md:items-start transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg">
+    <div className="bg-white p-8 rounded-xl shadow-md border border-gray-100 text-center md:text-left flex flex-col items-center md:items-start transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg">
       {/* Optimized Next.js Image */}
       <div className="mb-4">
         <Image
@@ -28,9 +28,9 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
         />
       </div>
 
-      <h3 className="text-xl font-semibold text-white mb-2">{title}</h3>
+      <h3 className="text-xl font-semibold text-black mb-2">{title}</h3>
 
-      <p className="text-white text-sm md:text-base mb-4 flex-grow">
+      <p className="text-black text-sm md:text-base mb-4 flex-grow">
         {description}
       </p>
 

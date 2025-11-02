@@ -13,7 +13,7 @@ const HeroSection: React.FC = () => {
   };
 
   return (
-    <section className="bg-black py-16 ">
+    <section className="bg-white py-16 ">
       <div className="container mx-auto flex flex-col-reverse md:flex-row items-center gap-10 px-4 md:px-8">
         {/* === Text Content === */}
         <div className="flex-1 space-y-6">

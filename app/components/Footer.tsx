@@ -92,26 +92,26 @@ const Footer: React.FC = () => {
   ];
 
   // ==== Styling ====
-  const bgColor = "bg-[#1e1747]";
-  const textColor = "text-gray-200";
+  // const bgColor = "bg-[#1e1747]";
+  const textColor = "text-black";
   const headingColor = "text-white";
   const blueButton = "bg-[#00c9ff] hover:bg-[#00b0e0]";
 
   return (
-    <footer className={`${bgColor} ${textColor} font-inter`}>
+    <footer className={`${textColor} font-inter`}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-2 gap-y-10 md:grid-cols-4 lg:gap-x-12">
           {/* Column 1: Brand Info */}
           <div className="col-span-2 md:col-span-1 pr-6">
             <div className="flex gap-1 mb-4">
               <Image
-                src="/CF Logo White.png" // ✅ Path from the public folder root
+                src="/CF Logo Black.png" // ✅ Path from the public folder root
                 alt="logo"
                 width={40}
                 height={40}
                 className="text-white"
               />
-              <div className=" font-bold text-white mt-2">Courseficton</div>
+              <div className=" font-bold text-black mt-2">Courseficton</div>
             </div>
             <p className="text-sm leading-relaxed mb-6">
               Simple innate summer fat appear basket his desire joy.
@@ -123,7 +123,7 @@ const Footer: React.FC = () => {
                   href={item.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 text-gray-400 hover:text-white transition duration-200 rounded-full bg-transparent hover:bg-white/10"
+                  className="p-2 text-black hover:text-white transition duration-200 rounded-full bg-transparent hover:bg-white/10"
                 >
                   <item.Icon className="h-4 w-4" />
                 </a>
@@ -171,7 +171,7 @@ const Footer: React.FC = () => {
 
           {/* Column 4: Newsletter */}
           <div className="md:col-span-2 lg:col-span-1">
-            <h3 className={`text-xl font-semibold mb-6 ${headingColor}`}>
+            <h3 className={`text-xl font-semibold mb-6 text-black ${headingColor}`}>
               Join Our Newsletter
             </h3>
             <form
