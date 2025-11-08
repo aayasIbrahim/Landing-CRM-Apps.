@@ -1,3 +1,4 @@
+import CryptoHeroSection from "./components/CryptoHeroSection";
 import FeatureSection from "./components/FeatureSection";
 import HeroBanner from "./components/HeroBanner";
 import HeroSection from "./components/HeroSection";
@@ -16,6 +17,7 @@ export default function Home() {
       <FeatureSection />
       <PhraseDisplayCard />
       <TestimonialFeatureSection />
+      <CryptoHeroSection/>
     </>
   );
 }
