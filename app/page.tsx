@@ -1,13 +1,13 @@
-import AppDownloadCta from "./components/AppDownloadCta";
-import CryptoHeroSection from "./components/CryptoHeroSection";
-import FeatureSection from "./components/FeatureSection";
-import HeroBanner from "./components/HeroBanner";
-import HeroSection from "./components/HeroSection";
-import PhraseDisplayCard from "./components/PhraseDisplayCard";
-import TestimonialFeatureSection from "./components/TestimonialFeatureSection";
-import TestimonialSlider from "./components/TestimoniaSlider";
-import TimelineSection from "./components/TimelineSection";
-import TrustedBySection from "./components/TrustedBySection";
+import AppDownloadCta from "@/components/AppDownloadCta";
+import CryptoHeroSection from "@/components/CryptoHeroSection";
+import FeatureSection from "@/components/FeatureSection";
+import HeroBanner from "@/components/HeroBanner";
+import HeroSection from "@/components/HeroSection";
+import PhraseDisplayCard from "@/components/PhraseDisplayCard";
+import TestimonialFeatureSection from "@/components/TestimonialFeatureSection";
+import TestimonialSlider from "@/components/TestimoniaSlider";
+import TimelineSection from "@/components/TimelineSection";
+import TrustedBySection from "@/components/TrustedBySection";
 
 export default function Home() {
   return (
@@ -19,9 +19,9 @@ export default function Home() {
       <FeatureSection />
       <PhraseDisplayCard />
       <TestimonialFeatureSection />
-      <TestimonialSlider/>
-      <AppDownloadCta/>
-      <CryptoHeroSection/>
+      <TestimonialSlider />
+      <AppDownloadCta />
+      <CryptoHeroSection />
     </>
   );
 }

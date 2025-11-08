@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import FeatureCard from "../components/features/FeatureCard";
+import FeatureCard from "./features/FeatureCard";
 
 const features = [
   {
