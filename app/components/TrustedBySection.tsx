@@ -16,17 +16,20 @@ const TrustedBySection = () => {
     <section className="py-16 md:py-12 bg-white overflow-hidden relative shadow-lg">
       <div className="container mx-auto px- sm:px-6 lg:px-8  ">
         {/* Header */}
-        <div className="flex justify-center items-center gap-5 text-center text-2xl md:text-4xl font-extrabold text-gray-800 mb-12">
-          Over 32k+ software businesses growing with{" "}
-          <div className="flex justify-center items-center  mb-4 mt-1">
+        <div className="flex flex-col md:flex-row justify-center items-center gap-3 md:gap-5 text-center md:text-left text-2xl md:text-4xl font-extrabold text-gray-800 mb-12 px-4">
+          <p>Over 32k+ software businesses growing with</p>
+
+          <div className="flex justify-center items-center mt-2 md:mt-0">
             <Image
-              src="/CF Logo Black.png" // ✅ Path from the public folder root
-              alt="logo"
+              src="/CF Logo Black.png" // ✅ From public folder
+              alt="Coursefiction logo"
               width={40}
               height={40}
-              className="text-purple-700"
+              className="mr-2"
             />
-            <div className=" ffont-extrabold text-purple-700 mt-2">Coursefiction</div>
+            <span className="text-blue-700 font-extrabold">
+              Coursefiction
+            </span>
           </div>
         </div>
 

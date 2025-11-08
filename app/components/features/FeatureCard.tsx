@@ -30,7 +30,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
 
       <h3 className="text-xl font-semibold text-black mb-2">{title}</h3>
 
-      <p className="text-black text-sm md:text-base mb-4 flex-grow">
+      <p className="text-black text-gray-700 text-sm md:text-base mb-4 flex-grow">
         {description}
       </p>
 

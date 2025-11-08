@@ -53,7 +53,7 @@ const SignupForm: React.FC<SignupFormProps> = ({ onSubmit }) => {
   );
 };
 
-// ✅ Features List Item Type
+
 
 
 // ✅ Crypto Hero Section Component

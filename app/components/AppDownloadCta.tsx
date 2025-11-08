@@ -13,7 +13,7 @@ const AppDownloadCta: React.FC = () => {
       <div
         className="
           relative w-full max-w-4xl 
-          bg-indigo-50/50 dark:bg-indigo-900/10 
+          bg-indigo-200/50 
           text-center py-20 sm:py-28 lg:py-40 
           px-4 sm:px-10 rounded-xl shadow-2xl
           [clip-path:polygon(0_0,100%_0,100%_80%,50%_100%,0_80%)]
