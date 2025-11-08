@@ -13,8 +13,8 @@ const logos = [
 
 const TrustedBySection = () => {
   return (
-    <section className="py-16 md:py-24 bg-white overflow-hidden relative shadow-lg">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 ">
+    <section className="py-16 md:py-12 bg-white overflow-hidden relative shadow-lg">
+      <div className="container mx-auto px- sm:px-6 lg:px-8  ">
         {/* Header */}
         <div className="flex justify-center items-center gap-5 text-center text-2xl md:text-4xl font-extrabold text-gray-800 mb-12">
           Over 32k+ software businesses growing with{" "}

@@ -122,6 +122,7 @@ const TimelineSection: React.FC = () => {
               </div>
             ))}
           </div>
+          
         </div>
       </div>
     </section>

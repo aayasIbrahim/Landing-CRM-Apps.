@@ -100,7 +100,7 @@ const Footer: React.FC = () => {
   return (
     <footer className={`${textColor} font-inter`}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-2 gap-y-10 md:grid-cols-4 lg:gap-x-12">
+        <div className="grid grid-cols-2 gap-y-10 md:grid-cols-4 lg:gap-x-12 border border-gray-100">
           {/* Column 1: Brand Info */}
           <div className="col-span-2 md:col-span-1 pr-6">
             <div className="flex gap-1 mb-4">
@@ -184,7 +184,7 @@ const Footer: React.FC = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="flex-grow p-3 text-sm rounded-lg bg-white/10 border border-transparent focus:border-white/50 focus:outline-none placeholder-gray-400 text-white transition duration-200 shadow-inner"
+                className="flex-grow p-3 text-sm rounded-lg bg-white/10 border border-gray-300 focus:border-white/50 focus: placeholder-gray-400 text-white transition duration-200 shadow-inner"
               />
               <button
                 type="submit"

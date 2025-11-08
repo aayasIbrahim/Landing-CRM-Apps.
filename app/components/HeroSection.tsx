@@ -17,11 +17,11 @@ const HeroSection: React.FC = () => {
       <div className="container mx-auto flex flex-col-reverse md:flex-row items-center gap-10 px-4 md:px-8">
         {/* === Text Content === */}
         <div className="flex-1 space-y-6">
-          <p className="text-white font-semibold">Product Growth Solution in Single Platform</p>
+          <p className="text-black font-semibold">Product Growth Solution in Single Platform</p>
           <h1 className="text-4xl md:text-5xl font-bold text-gray-500">
             Managing business payments has never been easier
           </h1>
-          <p className="text-gray-300 text-lg">
+          <p className="text-black text-lg">
             Never at water me might. On formed merits hunted unable merely by mr whence or. Possession
             the unpleasing simplicity her uncommonly.
           </p>
