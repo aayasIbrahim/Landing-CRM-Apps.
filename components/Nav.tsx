@@ -1,82 +1,86 @@
 "use client";
-import React, { useState,useEffect } from "react";
-import { useSession } from "next-auth/react";
+import React, { useState } from "react";
+import { useSession, signOut } from "next-auth/react";
 import RegisterDrawer from "./RegisterDrawer";
 import SignUpDrawer from "./SignUpDrawer";
 import SignInDrawer from "./SignInDrawer";
 import Image from "next/image";
+import Link from "next/link";
 
 const NavBar: React.FC = () => {
-   const { data: session, status } = useSession();
+  const { data: session } = useSession();
   const [isRegisterDrawerOpen, setIsRegisterDrawerOpen] =
     useState<boolean>(false);
   const [isSignUpOpen, setIsSignUpOpen] = useState<boolean>(false);
   const [isSignInOpen, setIsSignInOpen] = useState<boolean>(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
 
- 
+  
+  const role = session?.user?.role;
+  const isAdmin = role === "admin";
 
-  useEffect(() => {
-    console.log("✅ Session Details and full information:", session);
-    console.log("✅ Status:", status);
-  }, [session, status]);
+  // 🧭 Navigation Links Array
+  const navLinks = [
+    { name: "Product", path: "/product", hasDropdown: true },
+    { name: "Template", path: "/template", hasDropdown: true },
+    { name: "Blog", path: "/blog", hasDropdown: false },
+    { name: "Pricing", path: "/pricing", hasDropdown: false },
+    ...(isAdmin ? [{ name: "Admin", path: "/admin" }] : []),
+  ];
 
   return (
     <header className="bg-white shadow">
       <nav className="container mx-auto flex justify-between items-center px-4 md:px-8 py-4">
         {/* === Logo === */}
-        <div className="flex justify-center items-center">
-          <Image
-            src="/CF Logo Black.png" // ✅ Path from the public folder root
-            alt="logo"
-            width={40}
-            height={40}
-          />
-          <div className=" font-bold text-gray-800">Courseficton</div>
+        <div className="flex items-center">
+          <Image src="/CF Logo Black.png" alt="logo" width={40} height={40} />
+          <div className="font-bold text-gray-800 ml-2">Coursefiction</div>
         </div>
 
         {/* === Desktop Links === */}
         <div className="hidden md:flex items-center gap-8">
-          <a
-            href="/product"
-            className="text-gray-700 hover:text-blue-600 transition"
-          >
-            Product <span className="ml-1">&#9662;</span>
-          </a>
-          <a
-            href="/template"
-            className="text-gray-700 hover:text-blue-600 transition"
-          >
-            Template <span className="ml-1">&#9662;</span>
-          </a>
-          <a
-            href="/blog"
-            className="text-gray-700 hover:text-blue-600 transition"
-          >
-            Blog
-          </a>
-          <a
-            href="/pricing"
-            className="text-gray-700 hover:text-blue-600 transition"
-          >
-            Pricing
-          </a>
+          {navLinks.map((link) => (
+            <Link
+              key={link.path}
+              href={link.path}
+              className="text-gray-700 hover:text-blue-600 transition"
+            >
+              {link.name}
+              {link.hasDropdown && <span className="ml-1">&#9662;</span>}
+            </Link>
+          ))}
         </div>
 
         {/* === Action Buttons === */}
         <div className="hidden md:flex items-center gap-4">
-          <button
-            onClick={() => setIsSignInOpen(true)}
-            className="text-gray-700 hover:text-blue-600 font-medium"
-          >
-            Sign In
-          </button>
-          <button
-            onClick={() => setIsRegisterDrawerOpen(true)}
-            className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
-          >
-            Registration
-          </button>
+          {session ? (
+            <>
+              <span className="text-gray-700 font-medium">
+                Hi, {session.user?.fullName || "User"}
+              </span>
+              <button
+                onClick={() => signOut()}
+                className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition"
+              >
+                Sign Out
+              </button>
+            </>
+          ) : (
+            <>
+              <button
+                onClick={() => setIsSignInOpen(true)}
+                className="text-gray-700 hover:text-blue-600 font-medium"
+              >
+                Sign In
+              </button>
+              <button
+                onClick={() => setIsRegisterDrawerOpen(true)}
+                className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
+              >
+                Registration
+              </button>
+            </>
+          )}
         </div>
 
         {/* === Mobile Hamburger === */}
@@ -113,37 +117,53 @@ const NavBar: React.FC = () => {
       {isMobileMenuOpen && (
         <div className="md:hidden bg-white border-t shadow-md">
           <div className="flex flex-col px-4 py-4 gap-3">
-            <a href="/product" className="text-gray-700 hover:text-blue-600">
-              Product
-            </a>
-            <a href="/template" className="text-gray-700 hover:text-blue-600">
-              Template
-            </a>
-            <a href="/blog" className="text-gray-700 hover:text-blue-600">
-              Blog
-            </a>
-            <a href="/pricing" className="text-gray-700 hover:text-blue-600">
-              Pricing
-            </a>
+            {navLinks.map((link) => (
+              <Link
+                key={link.path}
+                href={link.path}
+                className="text-gray-700 hover:text-blue-600"
+              >
+                {link.name}
+              </Link>
+            ))}
 
-            <button
-              onClick={() => {
-                setIsSignInOpen(true);
-                setIsMobileMenuOpen(false);
-              }}
-              className="text-gray-700 hover:text-blue-600 font-medium text-left"
-            >
-              Sign In
-            </button>
-            <button
-              onClick={() => {
-                setIsRegisterDrawerOpen(true);
-                setIsMobileMenuOpen(false);
-              }}
-              className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
-            >
-              Registration
-            </button>
+            {session ? (
+              <>
+                <span className="text-gray-700 font-medium">
+                  Hi, {session.user?.fullName || "User"}
+                </span>
+                <button
+                  onClick={() => {
+                    signOut();
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition"
+                >
+                  Sign Out
+                </button>
+              </>
+            ) : (
+              <>
+                <button
+                  onClick={() => {
+                    setIsSignInOpen(true);
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="text-gray-700 hover:text-blue-600 font-medium text-left"
+                >
+                  Sign In
+                </button>
+                <button
+                  onClick={() => {
+                    setIsRegisterDrawerOpen(true);
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
+                >
+                  Registration
+                </button>
+              </>
+            )}
           </div>
         </div>
       )}
@@ -161,8 +181,8 @@ const NavBar: React.FC = () => {
         isOpen={isSignInOpen}
         onClose={() => setIsSignInOpen(false)}
         openSignUp={() => {
-          setIsSignInOpen(false); // close Sign In drawer
-          setIsSignUpOpen(true); // open Sign Up drawer
+          setIsSignInOpen(false);
+          setIsSignUpOpen(true);
         }}
       />
     </header>
