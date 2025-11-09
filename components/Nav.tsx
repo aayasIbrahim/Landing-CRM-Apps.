@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { useSession, signOut } from "next-auth/react";
-import RegisterDrawer from "./RegisterDrawer";
+import FormDrawer from "./FormDrawer";
 import SignUpDrawer from "./SignUpDrawer";
 import SignInDrawer from "./SignInDrawer";
 import Image from "next/image";
@@ -169,7 +169,7 @@ const NavBar: React.FC = () => {
       )}
 
       {/* === Drawers === */}
-      <RegisterDrawer
+      <FormDrawer
         isOpen={isRegisterDrawerOpen}
         onClose={() => setIsRegisterDrawerOpen(false)}
       />

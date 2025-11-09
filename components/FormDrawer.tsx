@@ -1,15 +1,58 @@
-import React from "react";
+import React, { useState } from "react";
 
 // === Type Definitions ===
-interface RegisterDrawerProps {
+interface FormDrawerProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-// Sample country list (you can expand)
+// Sample country list
 const countries = ["United States", "Canada", "United Kingdom", "Australia", "Bangladesh"];
 
-const RegisterDrawer: React.FC<RegisterDrawerProps> = ({ isOpen, onClose }) => {
+const FormDrawer: React.FC<FormDrawerProps> = ({ isOpen, onClose }) => {
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    mobile: "",
+    country: "",
+  });
+
+  const [loading, setLoading] = useState(false);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  setLoading(true);
+
+  try {
+    const res = await fetch("/api/form", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    const data = await res.json();
+
+    if (data.success) {
+      alert("Form submitted successfully!");
+      setFormData({ fullName: "", email: "", mobile: "", country: "" });
+      onClose();
+    } else {
+      alert("Submission failed!");
+    }
+  } catch (error) {
+    console.error(error);
+    alert("Submission failed!");
+  } finally {
+    setLoading(false);
+  }
+};
+
+
   return (
     <>
       {/* === Drawer Panel === */}
@@ -21,23 +64,24 @@ const RegisterDrawer: React.FC<RegisterDrawerProps> = ({ isOpen, onClose }) => {
         {/* Drawer Header */}
         <div className="flex justify-between items-center px-6 py-4 border-b">
           <h2 className="text-xl font-bold text-gray-800">Register Now</h2>
-          <button
-            onClick={onClose}
-            className="text-gray-500 hover:text-gray-800 text-2xl"
-          >
+          <button onClick={onClose} className="text-gray-500 hover:text-gray-800 text-2xl">
             &times;
           </button>
         </div>
 
         {/* Drawer Content */}
         <div className="p-6 space-y-6">
-          <form className="flex flex-col gap-5" onSubmit={(e) => e.preventDefault()}>
+          <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
             {/* Full Name */}
             <label className="flex flex-col text-sm font-medium text-gray-700">
               Full Name
               <input
                 type="text"
+                name="fullName"
+                value={formData.fullName}
+                onChange={handleChange}
                 placeholder="Enter your full name"
+                required
                 className="mt-1 border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </label>
@@ -47,7 +91,11 @@ const RegisterDrawer: React.FC<RegisterDrawerProps> = ({ isOpen, onClose }) => {
               Email Address
               <input
                 type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
                 placeholder="Enter your email"
+                required
                 className="mt-1 border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </label>
@@ -57,7 +105,11 @@ const RegisterDrawer: React.FC<RegisterDrawerProps> = ({ isOpen, onClose }) => {
               Mobile Number
               <input
                 type="tel"
+                name="mobile"
+                value={formData.mobile}
+                onChange={handleChange}
                 placeholder="+880 1234 567890"
+                required
                 className="mt-1 border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </label>
@@ -66,8 +118,11 @@ const RegisterDrawer: React.FC<RegisterDrawerProps> = ({ isOpen, onClose }) => {
             <label className="flex flex-col text-sm font-medium text-gray-700">
               Country
               <select
+                name="country"
+                value={formData.country}
+                onChange={handleChange}
+                required
                 className="mt-1 border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                defaultValue=""
               >
                 <option value="" disabled>
                   Select your country
@@ -83,9 +138,10 @@ const RegisterDrawer: React.FC<RegisterDrawerProps> = ({ isOpen, onClose }) => {
             {/* Submit Button */}
             <button
               type="submit"
+              disabled={loading}
               className="mt-3 bg-blue-600 text-white py-2 rounded-lg font-semibold hover:bg-blue-700 transition-all duration-200"
             >
-              Register
+              {loading ? "Submitting..." : "Submit"}
             </button>
           </form>
 
@@ -102,11 +158,11 @@ const RegisterDrawer: React.FC<RegisterDrawerProps> = ({ isOpen, onClose }) => {
       {isOpen && (
         <div
           onClick={onClose}
-          className="fixed inset-0  bg-opacity-30 backdrop-blur-sm z-40"
+          className="fixed inset-0 bg-opacity-30 backdrop-blur-sm z-40"
         ></div>
       )}
     </>
   );
 };
 
-export default RegisterDrawer;
+export default FormDrawer;

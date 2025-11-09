@@ -13,7 +13,6 @@ export async function proxy(request: NextRequest) {
     req: request,
     secret: process.env.NEXTAUTH_SECRET,
   });
-
   // 🧑‍💻 If accessing admin route
   if (adminRoutes.some((route) => pathname.startsWith(route))) {
     if (!token) {
@@ -30,7 +29,9 @@ export async function proxy(request: NextRequest) {
       return NextResponse.redirect(url);
     }
   }
-
+  if(pathname==='/admin'){
+    console.log("✅ Admin access granted to:", token?.email)
+  }
   // ✅ Otherwise allow
   return NextResponse.next();
 }
