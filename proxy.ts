@@ -29,9 +29,7 @@ export async function proxy(request: NextRequest) {
       return NextResponse.redirect(url);
     }
   }
-  if(pathname==='/admin'){
-    console.log("✅ Admin access granted to:", token?.email)
-  }
+
   // ✅ Otherwise allow
   return NextResponse.next();
 }

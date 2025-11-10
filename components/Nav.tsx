@@ -21,11 +21,11 @@ const NavBar: React.FC = () => {
 
   // 🧭 Navigation Links Array
   const navLinks = [
-    { name: "Product", path: "/product", hasDropdown: true },
-    { name: "Template", path: "/template", hasDropdown: true },
-    { name: "Blog", path: "/blog", hasDropdown: false },
-    { name: "Pricing", path: "/pricing", hasDropdown: false },
-    ...(isAdmin ? [{ name: "Admin", path: "/admin" }] : []),
+    { name: "Product", path: "/", hasDropdown: true },
+    { name: "Template", path: "/", hasDropdown: true },
+    { name: "Blog", path: "/", hasDropdown: false },
+    { name: "Pricing", path: "/", hasDropdown: false },
+    ...(isAdmin ? [{ name: "Lead Collection", path: "/admin" }] : []),
   ];
 
   return (
