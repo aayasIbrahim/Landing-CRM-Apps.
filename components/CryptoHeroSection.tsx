@@ -82,9 +82,7 @@ const CryptoHeroSection: React.FC = () => {
             Stay on top of your assets with real-time analytics, secure tracking,
             and smart insights — all in one place.
           </p>
-
           {/* Features List */}
-         
         </div>
 
         {/* Right Form */}
