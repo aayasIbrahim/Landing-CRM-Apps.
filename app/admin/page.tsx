@@ -42,21 +42,33 @@ const ClientList: React.FC = () => {
   }, []);
 
   const downloadExcel = () => {
+    // যদি clients অ্যারে খালি হয়, ফাংশন থামাও
     if (clients.length === 0) return;
 
+    // clients ডেটাকে Excel শিটে রূপান্তর করা
     const ws = XLSX.utils.json_to_sheet(
       clients.map((c) => ({
         Name: c.fullName,
         Email: c.email,
         Mobile: c.mobile,
         Country: c.country,
-        "Created At": new Date(c.createdAt).toLocaleString(),
+        "Created At": new Date(c.createdAt).toLocaleString(), // তৈরি হওয়ার তারিখ
       }))
     );
+
+    // নতুন Excel workbook তৈরি করা
     const wb = XLSX.utils.book_new();
+
+    // শিটকে ওয়ার্কবুকে যোগ করা
     XLSX.utils.book_append_sheet(wb, ws, "Clients");
+
+    // ওয়ার্কবুককে বাইনারি ডেটায় রূপান্তর করা
     const buf = XLSX.write(wb, { bookType: "xlsx", type: "array" });
+
+    // বাইনারি ডেটা থেকে Blob তৈরি করা
     const blob = new Blob([buf], { type: "application/octet-stream" });
+
+    // ফাইল ডাউনলোড করা (file-saver লাইব্রেরি ব্যবহার করে)
     saveAs(blob, "clients.xlsx");
   };
 
@@ -158,7 +170,9 @@ const ClientList: React.FC = () => {
 
                   {/* Country */}
                   <td
-                    onClick={() => handleCopy(lead.country, lead._id, "country")}
+                    onClick={() =>
+                      handleCopy(lead.country, lead._id, "country")
+                    }
                     className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 relative"
                   >
                     {lead.country}
