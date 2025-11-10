@@ -21,10 +21,6 @@ const NavBar: React.FC = () => {
 
   // 🧭 Navigation Links Array
   const navLinks = [
-    { name: "Product", path: "/", hasDropdown: true },
-    { name: "Template", path: "/", hasDropdown: true },
-    { name: "Blog", path: "/", hasDropdown: false },
-    { name: "Pricing", path: "/", hasDropdown: false },
     ...(isAdmin ? [{ name: "Lead Collection", path: "/admin" }] : []),
   ];
 
@@ -46,7 +42,7 @@ const NavBar: React.FC = () => {
               className="text-gray-700 hover:text-blue-600 transition"
             >
               {link.name}
-              {link.hasDropdown && <span className="ml-1">&#9662;</span>}
+              {link&& <span className="ml-1">&#9662;</span>}
             </Link>
           ))}
         </div>

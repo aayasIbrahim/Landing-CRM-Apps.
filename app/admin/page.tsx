@@ -13,6 +13,10 @@ interface Client {
 const ClientList: React.FC = () => {
   const [clients, setClients] = useState<Client[]>([]);
   const [loading, setLoading] = useState(true);
+  const [copiedField, setCopiedField] = useState<{
+    id: string;
+    field: string;
+  } | null>(null);
 
   useEffect(() => {
     const fetchClients = async () => {
@@ -35,7 +39,17 @@ const ClientList: React.FC = () => {
     fetchClients();
   }, []);
 
-  if (loading) return <p>Loading clients...</p>;
+  const handleCopy = async (text: string, id: string, field: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopiedField({ id, field });
+      setTimeout(() => setCopiedField(null), 1500);
+    } catch (error) {
+      console.error("Failed to copy:", error);
+    }
+  };
+
+  if (loading) return <p className="text-center mt-10">Loading clients...</p>;
 
   return (
     <section className="container mx-auto px-4 py-10">
@@ -45,42 +59,89 @@ const ClientList: React.FC = () => {
         {clients.length === 0 ? (
           <p className="text-gray-500 text-lg">No leads found.</p>
         ) : (
-          <div className="overflow-x-auto">
-            <table className="min-w-full border border-gray-200 divide-y divide-gray-200">
-              <thead className="bg-gray-50">
+          <div className="overflow-x-auto shadow border border-gray-200 rounded-lg">
+            <table className="min-w-full divide-y divide-gray-200">
+              <thead className="bg-gray-100">
                 <tr>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">
-                    Name
-                  </th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">
-                    Email
-                  </th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">
-                    Mobile
-                  </th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">
-                    Country
-                  </th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">
-                    Created At
-                  </th>
+                  {["Name", "Email", "Mobile", "Country", "Created At"].map(
+                    (heading) => (
+                      <th
+                        key={heading}
+                        className="px-6 py-3 text-left text-sm font-semibold text-gray-700 uppercase"
+                      >
+                        {heading}
+                      </th>
+                    )
+                  )}
                 </tr>
               </thead>
+
               <tbody className="bg-white divide-y divide-gray-200">
                 {clients.map((lead) => (
-                  <tr key={lead._id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
+                  <tr key={lead._id} className="hover:bg-gray-50 transition">
+                    {/* Name */}
+                    <td
+                      onClick={() =>
+                        handleCopy(lead.fullName, lead._id, "fullName")
+                      }
+                      className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 cursor-pointer relative"
+                    >
                       {lead.fullName}
+                      {copiedField?.id === lead._id &&
+                        copiedField.field === "fullName" && (
+                          <span className="absolute right-2 text-green-600 text-xs">
+                            Copied!
+                          </span>
+                        )}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+
+                    {/* Email */}
+                    <td
+                      onClick={() => handleCopy(lead.email, lead._id, "email")}
+                      className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 cursor-pointer relative"
+                    >
                       {lead.email}
+                      {copiedField?.id === lead._id &&
+                        copiedField.field === "email" && (
+                          <span className="absolute right-2 text-green-600 text-xs">
+                            Copied!
+                          </span>
+                        )}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+
+                    {/* Mobile */}
+                    <td
+                      onClick={() =>
+                        handleCopy(lead.mobile, lead._id, "mobile")
+                      }
+                      className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 cursor-pointer relative"
+                    >
                       {lead.mobile}
+                      {copiedField?.id === lead._id &&
+                        copiedField.field === "mobile" && (
+                          <span className="absolute right-2 text-green-600 text-xs">
+                            Copied!
+                          </span>
+                        )}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+
+                    {/* Country */}
+                    <td
+                      className="px-6 py-4 whitespace-nowrap text-sm text-gray-600"
+                      onClick={() =>
+                        handleCopy(lead.country, lead._id, "country")
+                      }
+                    >
                       {lead.country}
+                      {copiedField?.id === lead._id &&
+                        copiedField.field === "mobile" && (
+                          <span className="absolute right-2 text-green-600 text-xs">
+                            Copied!
+                          </span>
+                        )}
                     </td>
+
+                    {/* Created At */}
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                       {new Date(lead.createdAt).toLocaleString()}
                     </td>
